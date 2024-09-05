@@ -4,9 +4,9 @@ library(zoo)
 rm(list = ls())
 
 # set the path where your formant table lives
-setwd("C:\\Users\\Matt\\Documents\\PraatScripts\\Make_vowel_space")
+setwd("C:\\Users\\conem\\Desktop\\phones")
 
-df <- read.csv("my_formants.Table", stringsAsFactors = FALSE) 
+df <- read.csv("formants.Table", stringsAsFactors = FALSE) 
 
 # the data frame should have this format:
 #     vowel time_index v_time time_abs   F1   F2   F3
@@ -28,28 +28,29 @@ df <- read.csv("my_formants.Table", stringsAsFactors = FALSE)
 #================================================================#
 # https://en.wikipedia.org/wiki/Phonetic_symbols_in_Unicode#Vowels
 vowel_lookup = 
-           c(`ae` = "\u00E6",         # cat
-             `ah` = "\u0251",         # cot
-             `aw` = "\u0254",         # caught
-             `ai` = "\u0251\u026A",   # ride
-             `ait` = "\u0251\u026At", # right
-             `au` = "a\u028A",        # cloud
-             `eh` = "\u025B",         # bet
-             `ei` = "e\u026A",        # rate
-             `ih` = "\u026A",         # bit
-             `ii` = "i",              # beat
-             `oh` = "o\u028A",        # boat
-             `oo` = "\u028A",         # cook
-             `uh` = "\u028C",         # cut
-             `uu` = "u",              # tooth
-             `xx` = "\u0259",         # a(head)
-             `er` = "\u025D",         # bird
-             `eir` = "e\u026Ar",      # mary
-             `ehr` = "\u025Br",       # merry
-             `aer` = "\u00E6r",       # marry
-             `cr` = "\u0254r",        # more
-             `ar` = "\u0251r",        # far
-             `oi` = "\u0254\u026A"    # joy
+           c(
+            `{` = "\u00E6", # hat
+            `E` = "\u025B", # head
+            `I` = "\u026A", # hit
+            `O` = "\u0254", # gnaw
+            `Q` = "\u0252", # not
+            `U` = "\u028A", # good
+            `V` = "\u028C", # hut
+            `A` = "\u0251", # palm
+            `i` = "\u0069", # heed
+            `u` = "\u0075", # you
+            `ER` = "\u0259\u02DE", # her
+            `@` = "\u0259", # schwa
+            `eI` = "\u0065\u026A", # ate
+            `aI` = "\u0061\u026A", # eye
+            `aU` = "\u0061\u028A", # out
+            `oI` = "\u006F\u026A", # boy
+            `oU` = "\u006F\u028A", # no
+            `Ar` = "\u0251\u0279", # car
+            `Er` = "\u025B\u0279", # care
+            `Ir` = "\u026A\u0279", # peer
+            `Ur` = "\u028A\u0279", # lure
+            `Or` = "\u0254\u0279" # bore
              )
 
 #================================================================#
@@ -63,7 +64,7 @@ exclude_these_Vs <- as.character("")
 
 # for most vowel plots, I want to leave these out. 
 exclude_these_Vs <- 
-  c("cr","er","ar", "xx")
+  c("Sil")
 #================================================================#
 # if you recorded multiple versions of the same vowel,
 # then average over them here
@@ -117,6 +118,6 @@ px_v_space_smooth <- df_sum %>%
 px_v_space_smooth
 
 # Save the plot
-ggsave(px_v_space_smooth, file = "My_vowel_space.png",
+ggsave(px_v_space_smooth, file = "vowel_space.png",
        height = 3.7, width = 4.8, dpi = 600)
 # End!
