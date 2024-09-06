@@ -60,10 +60,10 @@ df$IPA <- vowel_lookup[df$vowel]
 
 # ================================================================#
 # initiate list of vowels that you want to leave out
-exclude_these_vs <- as.character("")
+exclude_these_Vs <- as.character("")
 
 # for most vowel plots, I want to leave these out.
-exclude_these_vs <-
+exclude_these_Vs <-
   c("Sil")
 # ================================================================#
 # if you recorded multiple versions of the same vowel,
